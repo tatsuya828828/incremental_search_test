@@ -61,6 +61,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%") #paramsとして送られてきたkeyword(入力された語句)で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
+    respond_to do |format|
+      format.json { render 'index', json: @users } #json形式のデータを受け取ったら、@usersをデータとして返す、そしてindexをrenderで表示する
+    end
+    # もしくは
+    # render json: @users と書くと簡潔にかける
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
