@@ -62,9 +62,9 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.find_by(name: params[:keyword]) #paramsとして送られてきたkeyword(入力された語句)で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
+    @self_id = User.find_by(self_id: params[:keyword]) #paramsとして送られてきたkeyword(入力された語句)で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
     respond_to do |format|
-      format.json { render 'index', json: @users } #json形式のデータを受け取ったら、@usersをデータとして返す、そしてindexをrenderで表示する
+      format.json { render 'index', json: @self_id } #json形式のデータを受け取ったら、@usersをデータとして返す、そしてindexをrenderで表示する
     end
     # もしくは
     # render json: @users と書くと簡潔にかける
