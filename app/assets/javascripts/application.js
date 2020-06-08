@@ -30,9 +30,9 @@ $(document).on('turbolinks:load', function(){ // turbolinksを先に読み込む
 			dataType: 'json' // データ形式を指定
 		})
 		.done(function(data){ // データを受け取ることに成功したら、dataを引数にとって以下の子をする(今回はdataに@usersが入っている)
-			$('#result').find('li').remove(); // idがresultの子要素のliを文字入力のたびに一旦削除する
-			$(data).each(function(i,user){ // dataをuserという変数に代入して、以下のことを繰り返し行う
-				$('#result').append('<li>' + user.name + '</li>') // id="result"に対して、<li>ユーザーの名前</li>を追加する
+			$('#result').find('p').remove(); // idがresultの子要素のpを文字入力のたびに一旦削除する
+			$(data).show(function(){
+				$('#result').append('<p style="color: red;">' + '既に使われています' + '</p>') // id="result"に対して、ユーザーの名前がすでに使われている場合文言を表示する
 			});
 		})
 	});
